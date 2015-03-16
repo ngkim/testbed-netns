@@ -1,0 +1,25 @@
+#!/bin/bash
+
+source "$HOME/testbed-netns/lib/commands.sh"
+source "$HOME/testbed-netns/lib/namespace.sh"
+
+usage() {
+    echo "$0 [customer_name]"
+    echo "$0 tilon"
+    exit
+}
+
+if [ -z $1 ]; then
+    usage
+fi
+
+CUSTOMER=$1
+CFG_FILE="${CUSTOMER}.ini"
+CFG_PATH="$HOME/testbed-netns/config/$CFG_FILE"
+
+if [ ! -f $CFG_PATH ]; then
+    echo "$CFG_PATH is not a file!!!"
+    exit
+fi
+
+source $CFG_PATH

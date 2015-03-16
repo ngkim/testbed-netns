@@ -1,0 +1,16 @@
+*.box
+.vagrant
+openstack
+adminkey
+*.pyc
+*_bootstrap_file_*
+img
+*.img
+*key
+*.pub
+*.log
+*.err
+*.swp
+*.backup
+*.bak
+*.dump
