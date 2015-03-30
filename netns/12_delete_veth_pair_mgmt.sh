@@ -2,23 +2,19 @@
 
 source "./00_check_condition.include"
 
-if [ ! -z $MGMT_DEV_HOST ]; then
-  echo "1. delete MGMT veth pair between router and host"
-  delete_veth_pair_link_host $MGMT_DEV_HOST $MGMT_BR
-fi
+delete_veth_pair_mgmt() {
+  MGMT_VETH_HOST=$1
+  MGMT_BR=$2
 
-if [ ! -z $END_1_MGMT_DEV_HOST ]; then
-  echo "2. delete MGMT veth pair between end-1 and host"
-  delete_veth_pair_link_host $END_1_MGMT_DEV_HOST $MGMT_BR
-fi
+  if [ ! -z $MGMT_VETH_HOST ]; then
+    echo "*** delete MGMT veth pair"
+    delete_veth_pair_link_host $MGMT_VETH_HOST $MGMT_BR
+  fi
+}
 
-if [ ! -z $END_2_MGMT_DEV_HOST ]; then
-  echo "3. delete MGMT veth pair between end-2 and host"
-  delete_veth_pair_link_host $END_2_MGMT_DEV_HOST $MGMT_BR
-fi
-
-if [ ! -z $END_3_MGMT_DEV_HOST ]; then
-  echo "3. delete MGMT veth pair between end-3 and host"
-  delete_veth_pair_link_host $END_3_MGMT_DEV_HOST $MGMT_BR
-fi
+delete_veth_pair_mgmt $MGMT_DEV_HOST $MGMT_BR
+delete_veth_pair_mgmt $END_1_MGMT_DEV_HOST $MGMT_BR
+delete_veth_pair_mgmt $END_2_MGMT_DEV_HOST $MGMT_BR
+delete_veth_pair_mgmt $END_3_MGMT_DEV_HOST $MGMT_BR
+delete_veth_pair_mgmt $END_4_MGMT_DEV_HOST $MGMT_BR
 
