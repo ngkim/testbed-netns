@@ -18,6 +18,11 @@ create_veth_for_mgmt() {
   fi
 }
 
+if [ $USE_MGMT -eq 0 ]; then
+   echo "$0 : USE_MGMT is set to 0"
+   exit
+fi
+
 create_veth_for_mgmt $NS_NAME $MGMT_DEV_NS $MGMT_DEV_HOST $MGMT_IP_NS $MGMT_BR
 create_veth_for_mgmt $END_1_NS_NAME $END_1_MGMT_DEV_NS $END_1_MGMT_DEV_HOST $END_1_MGMT_IP_NS $MGMT_BR
 create_veth_for_mgmt $END_2_NS_NAME $END_2_MGMT_DEV_NS $END_2_MGMT_DEV_HOST $END_2_MGMT_IP_NS $MGMT_BR

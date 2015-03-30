@@ -32,7 +32,9 @@ add_route_end() {
   if [ $# -eq 3 ]; then	
     echo "*** Add route"
     add_route $END_NS_NAME IP_NS_ROUTE[@]
+  fi
 
+  if [ $# -eq 3 ]; then	
     echo "*** Set default route"
     set_default_gw $END_NS_NAME $DEFAULT_IP_NS_GW
   fi

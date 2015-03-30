@@ -12,6 +12,11 @@ delete_veth_pair_mgmt() {
   fi
 }
 
+if [ $USE_MGMT -eq 0 ]; then
+   echo "$0 : USE_MGMT is set to 0"
+   exit
+fi
+
 delete_veth_pair_mgmt $MGMT_DEV_HOST $MGMT_BR
 delete_veth_pair_mgmt $END_1_MGMT_DEV_HOST $MGMT_BR
 delete_veth_pair_mgmt $END_2_MGMT_DEV_HOST $MGMT_BR

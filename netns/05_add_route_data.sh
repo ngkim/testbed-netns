@@ -32,7 +32,9 @@ add_route_data() {
   if [ $# -eq 3 ]; then	
     echo "1. Add route for DATA"
     add_route $ROUTER_NS IP_NS_ROUTE[@]
+  fi
 
+  if [ $# -eq 3 ]; then	
     echo "2. Set default route"
     set_default_gw $ROUTER_NS $DEFAULT_IP_NS_ROUTE
   fi
