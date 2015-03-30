@@ -6,7 +6,7 @@ delete_veth_pair_mgmt() {
   MGMT_VETH_HOST=$1
   MGMT_BR=$2
 
-  if [ ! -z $MGMT_VETH_HOST ]; then
+  if [ ! -z $MGMT_BR ]; then
     echo "*** delete MGMT veth pair"
     delete_veth_pair_link_host $MGMT_VETH_HOST $MGMT_BR
   fi

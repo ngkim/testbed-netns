@@ -29,7 +29,7 @@ add_route_end() {
   DEFAULT_IP_NS_GW=$2
   declare -a IP_NS_ROUTE=("${!3}")
 
-  if [ ! -z $END_NS_NAME ]; then	
+  if [ $# -eq 3 ]; then	
     echo "*** Add route"
     add_route $END_NS_NAME IP_NS_ROUTE[@]
 

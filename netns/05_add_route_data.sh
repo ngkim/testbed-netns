@@ -29,7 +29,7 @@ add_route_data() {
   DEFAULT_IP_NS_ROUTE=$2
   declare -a IP_NS_ROUTE=("${!3}")
 
-  if [ ! -z $ROUTER_NS ]; then	
+  if [ $# -eq 3 ]; then	
     echo "1. Add route for DATA"
     add_route $ROUTER_NS IP_NS_ROUTE[@]
 
