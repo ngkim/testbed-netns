@@ -24,18 +24,21 @@ set_default_gw() {
         run_commands $cmd
 }
 
-if [ ! -z $END_1_NS_NAME ]; then	
-  echo "1-1. Add route for END-1"
-  add_route $END_1_NS_NAME GW_1_IP_NS_ROUTE[@]
+add_route_end() {
+  END_NS_NAME=$1
+  DEFAULT_IP_NS_GW=$2
+  declare -a IP_NS_ROUTE=("${!3}")
 
-  echo "1-2. Set default route for END-1"
-  set_default_gw $END_1_NS_NAME $GW_1_IP_NS_DEFAULT
-fi
+  if [ ! -z $END_NS_NAME ]; then	
+    echo "*** Add route"
+    add_route $END_NS_NAME IP_NS_ROUTE[@]
 
-if [ ! -z $END_2_NS_NAME ]; then	
-  echo "2-1. Add route for END-2"
-  add_route $END_2_NS_NAME GW_2_IP_NS_ROUTE[@]
+    echo "*** Set default route"
+    set_default_gw $END_NS_NAME $DEFAULT_IP_NS_GW
+  fi
+}
 
-  echo "2-2. Set default route for END-2"
-  set_default_gw $END_2_NS_NAME $GW_2_IP_NS_DEFAULT
-fi
+add_route_end $END_1_NS_NAME $GW_1_IP_NS_DEFAULT GW_1_IP_NS_ROUTE[@]
+add_route_end $END_2_NS_NAME $GW_2_IP_NS_DEFAULT GW_2_IP_NS_ROUTE[@]
+add_route_end $END_3_NS_NAME $GW_3_IP_NS_DEFAULT GW_3_IP_NS_ROUTE[@]
+
